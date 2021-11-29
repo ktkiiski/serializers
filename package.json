@@ -1,0 +1,45 @@
+{
+  "name": "serializers",
+  "version": "0.0.0",
+  "description": "Type-safe data validation and serialization library",
+  "scripts": {
+    "test": "jest",
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.json && cp -r ./build/template/esm ./lib/",
+    "build:cjs": "tsc -p tsconfig-cjs.json && cp -r ./build/template/cjs ./lib/",
+    "lint": "eslint . --ext .ts,.tsx && prettier --check .",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix && prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktkiiski/serializers.git"
+  },
+  "prettier": "eslint-config-broilerplate/prettier.config",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js"
+    }
+  },
+  "keywords": [
+    "serialization",
+    "deserialization",
+    "models",
+    "encoding",
+    "decoding"
+  ],
+  "author": "Kimmo Kiiski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ktkiiski/serializers/issues"
+  },
+  "homepage": "https://github.com/ktkiiski/serializers#readme",
+  "devDependencies": {
+    "eslint-config-broilerplate": "^3.0.0",
+    "jest": "^27.3.1",
+    "typescript": "^4.5.2"
+  }
+}

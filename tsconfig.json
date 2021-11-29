@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "declaration": true,
+    "module": "ESNext",
+    "outDir": "./lib/esm",
+    "strict": true,
+    "noImplicitAny": true
+  },
+  "include": ["src/**/*"]
+}
