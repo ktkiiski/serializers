@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "moduleResolution": "Node",
+    "importsNotUsedAsValues": "error",
+    "exactOptionalPropertyTypes": true,
     "target": "ESNext",
     "declaration": true,
     "module": "ESNext",
