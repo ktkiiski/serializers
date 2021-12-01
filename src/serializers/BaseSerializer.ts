@@ -17,7 +17,7 @@ abstract class BaseSerializer<T, S> implements Serializer<T, S> {
     return this.transformWith(input, (field, value) => field.serialize(value));
   }
 
-  public encode(input: T): Encoding {
+  public encodeFields(input: T): Encoding {
     return this.transformWith(input, (field, value) => field.encode(value));
   }
 
@@ -33,7 +33,7 @@ abstract class BaseSerializer<T, S> implements Serializer<T, S> {
     return this.transformWith(input, (field, value) => field.deserialize(value));
   }
 
-  public decode(input: Encoding): S {
+  public decodeFields(input: Encoding): S {
     return this.transformWith(input, (field, value) => field.decode(value));
   }
 

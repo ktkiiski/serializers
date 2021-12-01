@@ -5,8 +5,8 @@ export default interface Serializer<I = any, O = I> {
   validate(input: I): O;
   serialize(input: I): Serialization;
   deserialize(input: unknown): O;
-  encode(input: I): Encoding;
-  decode(input: Encoding): O;
+  encodeFields(input: I): Encoding;
+  decodeFields(input: Encoding): O;
   encodeSortable(input: I): Encoding;
   decodeSortable(input: Encoding): O;
 }
