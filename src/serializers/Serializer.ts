@@ -1,10 +1,10 @@
 import type Encoding from './Encoding';
 import type Serialization from './Serialization';
 
-export default interface Serializer<I = any, O = I> {
-  validate(input: I): O;
-  serialize(input: I): Serialization;
-  deserialize(input: unknown): O;
-  encodeFields(input: I): Encoding;
-  decodeFields(input: Encoding): O;
+export default interface Serializer<Data> {
+  validate(input: Data): Data;
+  serialize(input: Data): Serialization;
+  deserialize(input: unknown): Data;
+  encodeFields(input: Data): Encoding;
+  decodeFields(input: Encoding): Data;
 }

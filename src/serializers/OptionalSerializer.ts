@@ -6,11 +6,10 @@ import type FieldConverter from './FieldConverter';
 import type Fields from './Fields';
 import type OptionalInput from './OptionalInput';
 import type { OptionalOptions } from './OptionalOptions';
-import type OptionalOutput from './OptionalOutput';
 
 export default class OptionalSerializer<S, R extends keyof S, O extends keyof S>
-  extends BaseSerializer<OptionalInput<S, R, O>, OptionalOutput<S, R, O>>
-  implements ExtendableSerializer<OptionalInput<S, R, O>, OptionalOutput<S, R, O>>
+  extends BaseSerializer<OptionalInput<S, R, O>>
+  implements ExtendableSerializer<OptionalInput<S, R, O>>
 {
   private readonly requiredFields: R[];
 

@@ -4,10 +4,9 @@ import type { ExtendableSerializer } from './ExtendableSerializer';
 import type Fields from './Fields';
 import type OptionalInput from './OptionalInput';
 import type { OptionalOptions } from './OptionalOptions';
-import type OptionalOutput from './OptionalOutput';
 import OptionalSerializer from './OptionalSerializer';
 
-export default class FieldSerializer<T> extends BaseSerializer<T, T> implements ExtendableSerializer<T> {
+export default class FieldSerializer<T> extends BaseSerializer<T> implements ExtendableSerializer<T> {
   constructor(public readonly fields: Fields<T>) {
     super();
   }
@@ -36,7 +35,7 @@ export default class FieldSerializer<T> extends BaseSerializer<T, T> implements 
 
   public optional<R extends Key<T>, O extends Key<T>>(
     options: OptionalOptions<T, R, O>,
-  ): ExtendableSerializer<OptionalInput<T, R, O>, OptionalOutput<T, R, O>> {
+  ): ExtendableSerializer<OptionalInput<T, R, O>> {
     return new OptionalSerializer(options, this.fields);
   }
 

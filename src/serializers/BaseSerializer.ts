@@ -10,7 +10,7 @@ import type Fields from './Fields';
 import type Serialization from './Serialization';
 import type Serializer from './Serializer';
 
-abstract class BaseSerializer<T, S> implements Serializer<T, S> {
+abstract class BaseSerializer<T> implements Serializer<T> {
   protected abstract readonly fields: Fields<T>;
 
   public serialize(input: T): Serialization {
@@ -21,15 +21,15 @@ abstract class BaseSerializer<T, S> implements Serializer<T, S> {
     return this.transformWith(input, (field, value) => field.encode(value));
   }
 
-  public validate(input: T): S {
-    return this.transformWith(input, (field, value) => field.validate(value)) as S;
+  public validate(input: T): T {
+    return this.transformWith(input, (field, value) => field.validate(value));
   }
 
-  public deserialize(input: unknown): S {
+  public deserialize(input: unknown): T {
     return this.transformWith(input, (field, value) => field.deserialize(value));
   }
 
-  public decodeFields(input: Encoding): S {
+  public decodeFields(input: Encoding): T {
     return this.transformWith(input, (field, value) => field.decode(value));
   }
 

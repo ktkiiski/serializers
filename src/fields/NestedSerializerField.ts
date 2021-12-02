@@ -5,7 +5,7 @@ import type Field from './Field';
 export default class NestedSerializerField<I> implements Field<I, Serialization> {
   public readonly type: string = 'jsonb';
 
-  constructor(private serializer: Serializer<I, any>) {}
+  constructor(private serializer: Serializer<I>) {}
 
   public validate(value: I): I {
     return this.serializer.validate(value);
