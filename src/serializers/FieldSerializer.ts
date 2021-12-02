@@ -1,6 +1,5 @@
 import { difference, Key, keys, omit, pick, Require } from 'immuton';
 import BaseSerializer from './BaseSerializer';
-import DefaultsSerializer from './DefaultsSerializer';
 import type { ExtendableSerializer } from './ExtendableSerializer';
 import type Fields from './Fields';
 import type OptionalInput from './OptionalInput';
@@ -25,7 +24,6 @@ export default class FieldSerializer<T> extends BaseSerializer<T, T> implements 
     return this.optional({
       required: attrs,
       optional: difference(keys(this.fields), attrs),
-      defaults: {},
     }) as ExtendableSerializer<Require<T, K>>;
   }
 
@@ -33,18 +31,13 @@ export default class FieldSerializer<T> extends BaseSerializer<T, T> implements 
     return this.optional({
       required: [],
       optional: keys(this.fields),
-      defaults: {},
     });
   }
 
-  public optional<R extends Key<T>, O extends Key<T>, D extends keyof T>(
-    options: OptionalOptions<T, R, O, D>,
-  ): ExtendableSerializer<OptionalInput<T, R, O, D>, OptionalOutput<T, R, O, D>> {
+  public optional<R extends Key<T>, O extends Key<T>>(
+    options: OptionalOptions<T, R, O>,
+  ): ExtendableSerializer<OptionalInput<T, R, O>, OptionalOutput<T, R, O>> {
     return new OptionalSerializer(options, this.fields);
-  }
-
-  public defaults<D extends keyof T>(defaults: { [P in D]: T[P] }): DefaultsSerializer<T, D> {
-    return new DefaultsSerializer(defaults, this.fields);
   }
 
   public extend<E>(fields: Fields<E>): FieldSerializer<T & E> {
