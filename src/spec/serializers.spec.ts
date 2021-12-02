@@ -16,7 +16,7 @@ interface TestInput {
   };
 }
 
-describe('FieldSerializer', () => {
+describe('serializer', () => {
   describe('gathers nested validation errors', () => {
     const serializer: Serializer<TestInput> = new FieldSerializer({
       name: new StringField(),

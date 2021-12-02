@@ -61,7 +61,7 @@ abstract class BaseSerializer<T> implements Serializer<T> {
         if (isValidationError(error)) {
           errors.push({ ...serializeValidationError(error), key });
         } else {
-          // Pass this error through, causing an internal server error
+          // Pass this error through
           throw error;
         }
       }

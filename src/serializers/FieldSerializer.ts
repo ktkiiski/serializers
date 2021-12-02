@@ -1,9 +1,7 @@
-import { difference, Key, keys, omit, pick, Require } from 'immuton';
+import { empty, Key, omit, pick, Require } from 'immuton';
 import BaseSerializer from './BaseSerializer';
 import type { ExtendableSerializer } from './ExtendableSerializer';
 import type Fields from './Fields';
-import type OptionalInput from './OptionalInput';
-import type { OptionalOptions } from './OptionalOptions';
 import OptionalSerializer from './OptionalSerializer';
 
 export default class FieldSerializer<T> extends BaseSerializer<T> implements ExtendableSerializer<T> {
@@ -19,24 +17,12 @@ export default class FieldSerializer<T> extends BaseSerializer<T> implements Ext
     return new FieldSerializer(omit(this.fields, attrs) as Fields<Omit<T, K>>);
   }
 
-  public partial<K extends Key<T>>(attrs: K[]): ExtendableSerializer<Require<T, K>> {
-    return this.optional({
-      required: attrs,
-      optional: difference(keys(this.fields), attrs),
-    }) as ExtendableSerializer<Require<T, K>>;
+  public partial<K extends Key<T>>(required: K[]): ExtendableSerializer<Require<T, K>> {
+    return new OptionalSerializer(required, this.fields);
   }
 
   public fullPartial(): ExtendableSerializer<Partial<T>> {
-    return this.optional({
-      required: [],
-      optional: keys(this.fields),
-    });
-  }
-
-  public optional<R extends Key<T>, O extends Key<T>>(
-    options: OptionalOptions<T, R, O>,
-  ): ExtendableSerializer<OptionalInput<T, R, O>> {
-    return new OptionalSerializer(options, this.fields);
+    return this.partial(empty);
   }
 
   public extend<E>(fields: Fields<E>): FieldSerializer<T & E> {
