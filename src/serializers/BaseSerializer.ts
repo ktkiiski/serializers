@@ -11,6 +11,8 @@ import type Serialization from './Serialization';
 import type Serializer from './Serializer';
 
 abstract class BaseSerializer<T> implements Serializer<T> {
+  readonly type: string = 'jsonb';
+
   protected abstract readonly fields: Fields<T>;
 
   public serialize(input: T): Serialization {
@@ -31,6 +33,14 @@ abstract class BaseSerializer<T> implements Serializer<T> {
 
   public decodeFields(input: Encoding): T {
     return this.transformWith(input, (field, value) => field.decode(value));
+  }
+
+  public encode(/* value: T */): string {
+    throw new Error('Method not implemented.');
+  }
+
+  public decode(/* value: string */): T {
+    throw new Error('Method not implemented.');
   }
 
   protected transformFieldWith<Value>(field: Field<any>, value: any, key: any, callback: FieldConverter<Value>): any {

@@ -1,32 +1,58 @@
-import { throws } from 'assert';
+import { deepEqual, throws } from 'assert';
 import type ValidationError from '../errors/ValidationError';
 import NumberField from '../fields/FloatField';
 import ListField from '../fields/ListField';
-import NestedSerializerField from '../fields/NestedSerializerField';
 import StringField from '../fields/StringField';
 import FieldSerializer from '../serializers/FieldSerializer';
 import type Serializer from '../serializers/Serializer';
 
-interface TestInput {
-  name: string;
-  index: number;
-  tags: string[];
-  nested: {
-    id: string;
-  };
-}
-
-describe('serializer', () => {
+describe('nested serializer', () => {
+  describe('can be used as a field', () => {
+    const serializer = new FieldSerializer({
+      name: new StringField(),
+      nestedObject: new FieldSerializer({
+        foo: new StringField(),
+        bar: new StringField(),
+      }),
+    });
+    const input = {
+      name: 'Hello!',
+      nestedObject: {
+        foo: 'FOO',
+        bar: 'BAR',
+      },
+    };
+    it('with validate()', () => {
+      deepEqual(serializer.validate(input), input);
+    });
+    it('with serialize()', () => {
+      deepEqual(serializer.serialize(input), input);
+    });
+    it('with deserialize()', () => {
+      deepEqual(serializer.serialize(input), input);
+    });
+  });
   describe('gathers nested validation errors', () => {
+    interface TestInput {
+      name: string;
+      index: number;
+      tags: string[];
+      nested: {
+        id: string;
+        foo: number;
+        bar: number;
+      };
+    }
+
     const serializer: Serializer<TestInput> = new FieldSerializer({
       name: new StringField(),
       index: new NumberField(),
       tags: new ListField(new StringField()),
-      nested: new NestedSerializerField(
-        new FieldSerializer({
-          id: new StringField(),
-        }),
-      ),
+      nested: new FieldSerializer({
+        id: new StringField(),
+        foo: new NumberField({ min: 0 }),
+        bar: new NumberField({ max: 10 }),
+      }),
     });
     const input: TestInput = {
       name: '',
@@ -34,6 +60,8 @@ describe('serializer', () => {
       tags: [''],
       nested: {
         id: '',
+        foo: -1,
+        bar: 11,
       },
     };
     const expectedError: ValidationError = {
@@ -69,6 +97,18 @@ describe('serializer', () => {
               message: `Value may not be blank`,
               key: 'id',
               errors: [],
+            },
+            {
+              code: 'lessThanMin',
+              errors: [],
+              key: 'foo',
+              message: 'Value cannot be less than 0',
+            },
+            {
+              code: 'moreThanMax',
+              errors: [],
+              key: 'bar',
+              message: 'Value cannot be greater than 10',
             },
           ],
         },
