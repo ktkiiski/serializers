@@ -1,18 +1,16 @@
 import { deepEqual, throws } from 'assert';
 import type ValidationError from '../errors/ValidationError';
-import NumberField from '../fields/FloatField';
-import ListField from '../fields/ListField';
-import StringField from '../fields/StringField';
+import * as fields from '../fields';
 import FieldSerializer from '../serializers/FieldSerializer';
 import type Serializer from '../serializers/Serializer';
 
 describe('nested serializer', () => {
   describe('can be used as a field', () => {
     const serializer = new FieldSerializer({
-      name: new StringField(),
+      name: fields.string(),
       nestedObject: new FieldSerializer({
-        foo: new StringField(),
-        bar: new StringField(),
+        foo: fields.string(),
+        bar: fields.string(),
       }),
     });
     const input = {
@@ -45,13 +43,13 @@ describe('nested serializer', () => {
     }
 
     const serializer: Serializer<TestInput> = new FieldSerializer({
-      name: new StringField(),
-      index: new NumberField(),
-      tags: new ListField(new StringField()),
+      name: fields.string(),
+      index: fields.number(),
+      tags: fields.list(fields.string()),
       nested: new FieldSerializer({
-        id: new StringField(),
-        foo: new NumberField({ min: 0 }),
-        bar: new NumberField({ max: 10 }),
+        id: fields.string(),
+        foo: fields.number({ min: 0 }),
+        bar: fields.number({ max: 10 }),
       }),
     });
     const input: TestInput = {

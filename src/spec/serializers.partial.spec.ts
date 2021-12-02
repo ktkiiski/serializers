@@ -1,16 +1,15 @@
 import { deepEqual, throws } from 'assert';
 import type ValidationError from '../errors/ValidationError';
-import NumberField from '../fields/FloatField';
-import StringField from '../fields/StringField';
+import * as fields from '../fields';
 import FieldSerializer from '../serializers/FieldSerializer';
 
 describe('partial serializer', () => {
   describe('allows omitting optional properties', () => {
     const serializer = new FieldSerializer({
-      requiredProp1: new StringField(),
-      requiredProp2: new NumberField(),
-      optionalProp1: new StringField(),
-      optionalProp2: new NumberField(),
+      requiredProp1: fields.string(),
+      requiredProp2: fields.number(),
+      optionalProp1: fields.string(),
+      optionalProp2: fields.number(),
     }).partial(['requiredProp1', 'requiredProp2']);
     const input = {
       requiredProp1: 'test1',
@@ -28,10 +27,10 @@ describe('partial serializer', () => {
   });
   describe('preserves optional properties', () => {
     const serializer = new FieldSerializer({
-      requiredProp1: new StringField(),
-      requiredProp2: new NumberField(),
-      optionalProp1: new StringField(),
-      optionalProp2: new NumberField(),
+      requiredProp1: fields.string(),
+      requiredProp2: fields.number(),
+      optionalProp1: fields.string(),
+      optionalProp2: fields.number(),
     }).partial(['requiredProp1', 'requiredProp2']);
     const input = {
       requiredProp1: 'test1',
@@ -51,10 +50,10 @@ describe('partial serializer', () => {
   });
   describe('disallow omitting required properties', () => {
     const serializer = new FieldSerializer({
-      requiredProp1: new StringField(),
-      requiredProp2: new NumberField(),
-      optionalProp1: new StringField(),
-      optionalProp2: new NumberField(),
+      requiredProp1: fields.string(),
+      requiredProp2: fields.number(),
+      optionalProp1: fields.string(),
+      optionalProp2: fields.number(),
     }).partial(['requiredProp1', 'requiredProp2']);
     const input: any = {
       optionalProp1: 'test2',
