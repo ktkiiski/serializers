@@ -30,12 +30,4 @@ export default class ChoiceField<K extends string> extends TextField implements 
   public decode(value: string): K {
     return this.deserialize(value);
   }
-
-  public encodeSortable(value: K): K {
-    return this.encode(value);
-  }
-
-  public decodeSortable(value: string): K {
-    return this.decode(value);
-  }
 }

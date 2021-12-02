@@ -32,12 +32,4 @@ export default class TimestampField implements Field<Date, number> {
     }
     return new Date(numeric);
   }
-
-  public encodeSortable(value: Date): string {
-    return this.numberField.encodeSortable(this.serialize(value));
-  }
-
-  public decodeSortable(value: string): Date {
-    return this.deserialize(this.numberField.decodeSortable(value));
-  }
 }

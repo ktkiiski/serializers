@@ -32,12 +32,4 @@ export default class BooleanField implements Field<boolean> {
     }
     throw new ValidationException('invalidBoolean', `Invalid encoded boolean value`);
   }
-
-  public encodeSortable(value: boolean): 'true' | 'false' {
-    return this.encode(value);
-  }
-
-  public decodeSortable(value: string): boolean {
-    return this.decode(value);
-  }
 }

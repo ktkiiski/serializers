@@ -29,12 +29,4 @@ export default class ConstantField<K extends number> extends IntegerField {
   public decode(value: string): K {
     return this.deserialize(value);
   }
-
-  public encodeSortable(value: K): string {
-    return super.encodeSortable(value);
-  }
-
-  public decodeSortable(value: string): K {
-    return super.decodeSortable(value) as K;
-  }
 }

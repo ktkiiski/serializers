@@ -21,10 +21,6 @@ abstract class BaseSerializer<T, S> implements Serializer<T, S> {
     return this.transformWith(input, (field, value) => field.encode(value));
   }
 
-  public encodeSortable(input: T): Encoding {
-    return this.transformWith(input, (field, value) => field.encodeSortable(value));
-  }
-
   public validate(input: T): S {
     return this.transformWith(input, (field, value) => field.validate(value)) as S;
   }
@@ -35,10 +31,6 @@ abstract class BaseSerializer<T, S> implements Serializer<T, S> {
 
   public decodeFields(input: Encoding): S {
     return this.transformWith(input, (field, value) => field.decode(value));
-  }
-
-  public decodeSortable(input: Encoding): S {
-    return this.transformWith(input, (field, value) => field.decodeSortable(value));
   }
 
   protected transformFieldWith<Value>(field: Field<any>, value: any, key: any, callback: FieldConverter<Value>): any {

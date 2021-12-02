@@ -29,12 +29,4 @@ export default class TextField implements Field<string> {
   public decode(value: string): string {
     return this.validate(value);
   }
-
-  public encodeSortable(value: string): string {
-    return this.encode(value);
-  }
-
-  public decodeSortable(value: string): string {
-    return this.decode(value);
-  }
 }

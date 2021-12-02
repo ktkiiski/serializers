@@ -23,15 +23,7 @@ export default class NestedSerializerField<I> implements Field<I, Serialization>
     throw new Error('Nested resource field does not support encoding.');
   }
 
-  public encodeSortable(): never {
-    throw new Error('Nested resource field does not support sortable encoding.');
-  }
-
   public decode(): never {
     throw new Error('Nested resource field does not support decoding.');
-  }
-
-  public decodeSortable(): never {
-    throw new Error('Nested resource field does not support sortable decoding.');
   }
 }

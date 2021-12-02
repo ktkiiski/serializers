@@ -28,12 +28,7 @@ export default class IntegerField extends NumberField implements Field<number> {
     }
     // Try to parse from a string to an integer
     if (typeof value === 'string') {
-      // If starting with special character '!', then it is a sortable encoding
-      if (value[0] === '!') {
-        value = parseInt(value.slice(1), 10) + Number.MIN_SAFE_INTEGER;
-      } else {
-        value = parseInt(value, 10);
-      }
+      value = parseInt(value, 10);
     }
     if (typeof value === 'number') {
       return this.validate(value);

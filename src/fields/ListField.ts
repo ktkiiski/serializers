@@ -37,16 +37,6 @@ export default class ListField<I, O> implements Field<I[], O[]> {
     return this.mapWith(items, (item) => this.field.decode(decodeURIComponent(item)));
   }
 
-  public encodeSortable(value: I[]): string {
-    return this.mapWith(value, (item) => encodeURIComponent(this.field.encodeSortable(item))).join('&');
-  }
-
-  public decodeSortable(value: string): I[] {
-    // TODO: Should differentiate an empty array vs. an array with a blank value!
-    const items = value ? value.split('&') : [];
-    return this.mapWith(items, (item) => this.field.decodeSortable(decodeURIComponent(item)));
-  }
-
   private mapWith<X, Y>(items: X[], iteratee: (item: X, index: number) => Y): Y[] {
     // NOTE: Even though this only supports arrays, let it also accept an empty OBJECT
     // and consider it as an empty array! This is to work around an issue in postgres-node

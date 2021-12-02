@@ -7,6 +7,4 @@ export default interface Serializer<I = any, O = I> {
   deserialize(input: unknown): O;
   encodeFields(input: I): Encoding;
   decodeFields(input: Encoding): O;
-  encodeSortable(input: I): Encoding;
-  decodeSortable(input: Encoding): O;
 }

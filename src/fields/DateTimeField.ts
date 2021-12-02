@@ -24,12 +24,4 @@ export default class DateTimeField implements Field<Date, string> {
   public decode(value: string): Date {
     return this.deserialize(value);
   }
-
-  public encodeSortable(value: Date): string {
-    return this.serialize(value);
-  }
-
-  public decodeSortable(value: string): Date {
-    return this.decode(value);
-  }
 }

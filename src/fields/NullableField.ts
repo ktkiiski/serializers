@@ -37,12 +37,4 @@ export default class NullableField<I, O> implements Field<I | null, O | null> {
   public decode(value: string): I | null {
     return (!isNullable(value) && this.field.decode(value)) || null;
   }
-
-  public encodeSortable(value: I): string {
-    return (!isNullable(value) && this.field.encodeSortable(value)) || '';
-  }
-
-  public decodeSortable(value: string): I | null {
-    return (!isNullable(value) && this.field.decodeSortable(value)) || null;
-  }
 }

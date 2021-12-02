@@ -60,27 +60,4 @@ export default class NumberField implements Field<number> {
   public decode(value: string): number {
     return this.validate(parseFloat(value));
   }
-
-  public encodeSortable(value: number): string {
-    // eslint-disable-next-line no-param-reassign
-    value = this.validate(value);
-    const bytes = Array.from(new Uint16Array(Float64Array.from([Math.abs(value)]).buffer));
-    const chunks = bytes.map((byte) => (value < 0 ? 0xffff ^ byte : byte).toString(16).padStart(4, '0')).reverse();
-    return `${value < 0 ? '-' : '0'}${chunks.join('')}`;
-  }
-
-  public decodeSortable(value: string): number {
-    const sign = value[0];
-    const byteStr = value.slice(1);
-    const byteArr: number[] = [];
-    for (let i = 0; i < byteStr.length; i += 4) {
-      const bytes = parseInt(byteStr.slice(i, i + 4), 16);
-      if (Number.isNaN(bytes)) {
-        throw new ValidationException('invalidNumber', `Invalid decoded number`);
-      }
-      byteArr.unshift(sign === '-' ? 0xffff ^ bytes : bytes);
-    }
-    const float = new Float64Array(Uint16Array.from(byteArr).buffer)[0];
-    return this.validate(sign === '-' ? -float : float);
-  }
 }
