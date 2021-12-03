@@ -4,6 +4,8 @@ import ValidationException from '../errors/ValidationException';
 import isValidationError from '../errors/isValidationError';
 import serializeValidationError from '../errors/serializeValidationError';
 import type Field from '../fields/Field';
+import decodeObject from '../utils/decodeObject';
+import encodeObject from '../utils/encodeObject';
 import type Encoding from './Encoding';
 import type FieldConverter from './FieldConverter';
 import type Fields from './Fields';
@@ -35,12 +37,14 @@ abstract class BaseSerializer<T> implements Serializer<T> {
     return this.transformWith(input, (field, value) => field.decode(value));
   }
 
-  public encode(/* value: T */): string {
-    throw new Error('Method not implemented.');
+  public encode(value: T): string {
+    const encodedFields = this.encodeFields(value);
+    return encodeObject(encodedFields);
   }
 
-  public decode(/* value: string */): T {
-    throw new Error('Method not implemented.');
+  public decode(value: string): T {
+    const encodedFields = decodeObject(value);
+    return this.decodeFields(encodedFields);
   }
 
   protected transformFieldWith<Value>(field: Field<any>, value: any, key: any, callback: FieldConverter<Value>): any {
