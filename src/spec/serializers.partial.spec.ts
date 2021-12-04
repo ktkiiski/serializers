@@ -10,7 +10,7 @@ describe('partial serializer', () => {
       requiredProp2: fields.number(),
       optionalProp1: fields.string(),
       optionalProp2: fields.number(),
-    }).partial(['requiredProp1', 'requiredProp2']);
+    }).require(['requiredProp1', 'requiredProp2']);
     const input = {
       requiredProp1: 'test1',
       requiredProp2: 123,
@@ -31,7 +31,7 @@ describe('partial serializer', () => {
       requiredProp2: fields.number(),
       optionalProp1: fields.string(),
       optionalProp2: fields.number(),
-    }).partial(['requiredProp1', 'requiredProp2']);
+    }).require(['requiredProp1', 'requiredProp2']);
     const input = {
       requiredProp1: 'test1',
       requiredProp2: 123,
@@ -54,7 +54,7 @@ describe('partial serializer', () => {
       requiredProp2: fields.number(),
       optionalProp1: fields.string(),
       optionalProp2: fields.number(),
-    }).partial(['requiredProp1', 'requiredProp2']);
+    }).require(['requiredProp1', 'requiredProp2']);
     const input: any = {
       optionalProp1: 'test2',
       optionalProp2: 321,
