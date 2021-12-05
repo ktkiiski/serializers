@@ -1,35 +1,34 @@
 import ValidationException from '../errors/ValidationException';
 import type Field from './Field';
 
+function transform(value: unknown): boolean {
+  if (typeof value === 'boolean') {
+    return value;
+  }
+  throw new ValidationException('invalidBoolean', `Invalid boolean value`);
+}
+
 export default class BooleanField implements Field<boolean> {
   public readonly type: string = 'boolean';
 
-  public validate(value: boolean): boolean {
-    return value;
-  }
+  public validate = transform;
 
-  public deserialize(value: unknown): boolean {
-    if (typeof value === 'boolean') {
-      return value;
-    }
-    throw new ValidationException('invalidBoolean', `Invalid boolean value`);
-  }
+  public deserialize = transform;
 
-  public serialize(value: boolean): boolean {
-    return value;
-  }
+  public serialize = transform;
 
   public encode(value: boolean): 'true' | 'false' {
-    return value ? 'true' : 'false';
+    return transform(value) ? 'true' : 'false';
   }
 
   public decode(value: string): boolean {
-    if (value === 'true') {
-      return true;
+    switch (value) {
+      case 'true':
+        return true;
+      case 'false':
+        return false;
+      default:
+        throw new ValidationException('invalidBoolean', `Invalid encoded boolean value`);
     }
-    if (value === 'false') {
-      return false;
-    }
-    throw new ValidationException('invalidBoolean', `Invalid encoded boolean value`);
   }
 }
