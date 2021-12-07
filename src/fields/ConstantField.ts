@@ -1,32 +1,17 @@
+import { propertyless } from 'immuton';
 import ValidationException from '../errors/ValidationException';
 import IntegerField from './IntegerField';
 
-export default class ConstantField<K extends number> extends IntegerField {
-  constructor(private choices: K[]) {
-    super({});
+export default class ConstantField<Option extends number> extends IntegerField<Option> {
+  constructor(private options: Option[]) {
+    super(propertyless);
   }
 
-  public validate(value: number): K {
-    const v = super.validate(value) as K;
-    if (this.choices.indexOf(v) >= 0) {
-      return v;
+  protected validateNumber(value: number) {
+    const options = this.options as number[];
+    if (options.indexOf(value) >= 0) {
+      return value as Option;
     }
     throw new ValidationException('invalidOption', `Value is not one of the valid options`);
-  }
-
-  public serialize(value: K): K {
-    return this.validate(value);
-  }
-
-  public deserialize(value: unknown): K {
-    return super.deserialize(value) as K;
-  }
-
-  public encode(value: K): string {
-    return super.encode(value);
-  }
-
-  public decode(value: string): K {
-    return this.deserialize(value);
   }
 }
