@@ -2,32 +2,16 @@ import ValidationException from '../errors/ValidationException';
 import type Field from './Field';
 import TextField from './TextField';
 
-export default class ChoiceField<K extends string> extends TextField implements Field<K> {
-  constructor(private options: K[]) {
+export default class ChoiceField<Option extends string> extends TextField<Option> implements Field<Option> {
+  constructor(private options: Option[]) {
     super();
   }
 
-  public validate(value: string): K {
-    const v = super.validate(value) as K;
-    if (this.options.indexOf(v) >= 0) {
-      return v;
+  protected validateString(value: string): Option {
+    const options = this.options as string[];
+    if (options.indexOf(value) >= 0) {
+      return value as Option;
     }
     throw new ValidationException('invalidOption', `Value is not one of the valid options`);
-  }
-
-  public serialize(value: K): K {
-    return this.validate(value);
-  }
-
-  public deserialize(value: string): K {
-    return this.validate(value);
-  }
-
-  public encode(value: K): K {
-    return this.serialize(value);
-  }
-
-  public decode(value: string): K {
-    return this.deserialize(value);
   }
 }

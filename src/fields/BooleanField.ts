@@ -1,7 +1,7 @@
 import ValidationException from '../errors/ValidationException';
 import type Field from './Field';
 
-function transform(value: unknown): boolean {
+function ensureBoolean(value: unknown): boolean {
   if (typeof value === 'boolean') {
     return value;
   }
@@ -11,14 +11,20 @@ function transform(value: unknown): boolean {
 export default class BooleanField implements Field<boolean> {
   public readonly type: string = 'boolean';
 
-  public validate = transform;
+  public validate(value: boolean): boolean {
+    return ensureBoolean(value);
+  }
 
-  public deserialize = transform;
+  public deserialize(value: unknown): boolean {
+    return ensureBoolean(value);
+  }
 
-  public serialize = transform;
+  public serialize(value: unknown): boolean {
+    return ensureBoolean(value);
+  }
 
   public encode(value: boolean): 'true' | 'false' {
-    return transform(value) ? 'true' : 'false';
+    return ensureBoolean(value) ? 'true' : 'false';
   }
 
   public decode(value: string): boolean {

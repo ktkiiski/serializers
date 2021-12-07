@@ -2,12 +2,11 @@ import ValidationException from '../errors/ValidationException';
 import TrimmedTextField from './TrimmedTextField';
 
 export default class StringField extends TrimmedTextField {
-  public validate(value: string): string {
-    // eslint-disable-next-line no-param-reassign
-    value = super.validate(value);
-    if (!value) {
+  public validateString(value: string): string {
+    const validatedValue = super.validateString(value);
+    if (!validatedValue) {
       throw new ValidationException('blank', `Value may not be blank`);
     }
-    return value;
+    return validatedValue;
   }
 }

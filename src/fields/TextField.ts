@@ -1,32 +1,40 @@
 import ValidationException from '../errors/ValidationException';
 import type Field from './Field';
 
-export default class TextField implements Field<string> {
+function ensureString(value: unknown): string {
+  if (typeof value === 'string') {
+    return String(value);
+  }
+  throw new ValidationException('invalidString', `Invalid string value`);
+}
+
+export default class TextField<I extends string = string> implements Field<I> {
   public readonly type: string = 'text';
 
-  public validate(value: string): string {
-    return value;
+  public validate(value: string): I {
+    return this.validateString(ensureString(value));
   }
 
-  public deserialize(value: unknown): string {
-    if (value == null) {
-      throw new ValidationException('invalidString', `Missing string value`);
+  public deserialize(value: unknown): I {
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      return this.validateString(String(value));
     }
-    if (typeof value === 'string' || (typeof value === 'number' && Number.isFinite(value))) {
-      return this.validate(String(value));
-    }
-    throw new ValidationException('invalidString', `Invalid string value`);
+    return this.validateString(ensureString(value));
   }
 
-  public serialize(value: string): string {
-    return this.validate(value);
+  public serialize(value: string): I {
+    return this.validateString(ensureString(value));
   }
 
   public encode(value: string): string {
-    return this.validate(value);
+    return this.validateString(ensureString(value));
   }
 
-  public decode(value: string): string {
-    return this.validate(value);
+  public decode(value: string): I {
+    return this.validateString(value);
+  }
+
+  protected validateString(value: string): I {
+    return value as I;
   }
 }
