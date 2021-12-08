@@ -3,25 +3,33 @@ import serializeDateTime from '../datetime/serializeDateTime';
 import ValidationException from '../errors/ValidationException';
 import type Field from './Field';
 
+function ensureDateTime(value: unknown): Date {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value;
+  }
+  throw new ValidationException('invalidDateTime', 'Invalid date/time value');
+}
+
 export default class DateTimeField implements Field<Date, string> {
   public readonly type: string = 'timestamptz';
 
   public validate(value: Date): Date {
-    if (Number.isNaN(value.getTime())) {
-      throw new ValidationException('invalidDateTime', 'Invalid date/time value');
-    }
-    return value;
+    return ensureDateTime(value);
   }
 
-  public serialize = serializeDateTime;
+  public serialize(value: Date): string {
+    return serializeDateTime(ensureDateTime(value));
+  }
 
-  public deserialize = deserializeDateTime;
+  public deserialize(value: unknown): Date {
+    return ensureDateTime(value instanceof Date ? value : deserializeDateTime(value));
+  }
 
   public encode(value: Date): string {
-    return this.serialize(value);
+    return serializeDateTime(ensureDateTime(value));
   }
 
   public decode(value: string): Date {
-    return this.deserialize(value);
+    return ensureDateTime(deserializeDateTime(value));
   }
 }
