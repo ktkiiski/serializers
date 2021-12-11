@@ -1,5 +1,6 @@
 /* eslint-disable no-bitwise */
 import ValidationException from '../errors/ValidationException';
+import parseNumber from '../utils/parseNumber';
 import type Field from './Field';
 
 export interface NumberFieldOptions {
@@ -14,13 +15,6 @@ function ensureNumber(value: unknown): number {
     throw new ValidationException('invalidNumber', 'Invalid number value');
   }
   return value;
-}
-
-function parseNumber(value: unknown): number {
-  if (typeof value === 'string' && value !== '') {
-    return ensureNumber(+value);
-  }
-  return ensureNumber(value);
 }
 
 export default class FloatField<Value extends number = number> implements Field<Value> {
@@ -44,7 +38,7 @@ export default class FloatField<Value extends number = number> implements Field<
   }
 
   public deserialize(value: unknown): Value {
-    return this.validateNumber(parseNumber(value));
+    return this.validateNumber(ensureNumber(parseNumber(value)));
   }
 
   public encode(value: Value): string {
@@ -52,7 +46,7 @@ export default class FloatField<Value extends number = number> implements Field<
   }
 
   public decode(value: string): Value {
-    return this.validateNumber(parseNumber(value));
+    return this.validateNumber(ensureNumber(parseNumber(value)));
   }
 
   protected validateNumber(value: number): Value {

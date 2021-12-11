@@ -10,8 +10,8 @@ export default class RegexpField extends TextField {
     super();
   }
 
-  public validate(value: string): string {
-    const strValue = super.validate(value);
+  protected validateString(value: string): string {
+    const strValue = super.validateString(value);
     if (this.regexp.test(strValue)) {
       return strValue;
     }
