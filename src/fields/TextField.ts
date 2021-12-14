@@ -3,7 +3,7 @@ import type Field from './Field';
 
 function ensureString(value: unknown): string {
   if (typeof value === 'string') {
-    return String(value);
+    return value;
   }
   throw new ValidationException('invalidString', `Invalid string value`);
 }
