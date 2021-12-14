@@ -75,7 +75,7 @@ describe('ConstantField', () => {
       throws(() => field.deserialize('-111'), validationError);
     });
     it('throws on non-number value', () => {
-      const validationError = new ValidationException('invalidNumber', 'Invalid number value');
+      const validationError = new ValidationException('invalidNumeric', 'Invalid numeric value');
       throws(() => field.deserialize('foo' as any), validationError);
       throws(() => field.deserialize(true), validationError);
       throws(() => field.deserialize({}), validationError);
@@ -120,7 +120,7 @@ describe('ConstantField', () => {
       throws(() => field.decode('-111'), validationError);
     });
     it('throws on encoded non-number', () => {
-      const validationError = new ValidationException('invalidNumber', 'Invalid number value');
+      const validationError = new ValidationException('invalidNumeric', 'Invalid numeric value');
       throws(() => field.decode(''), validationError);
       throws(() => field.decode('foo'), validationError);
     });

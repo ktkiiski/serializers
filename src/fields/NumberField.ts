@@ -17,7 +17,7 @@ function ensureNumber(value: unknown): number {
   return value;
 }
 
-export default class FloatField<Value extends number = number> implements Field<Value> {
+export default class NumberField<Value extends number = number> implements Field<Value> {
   public readonly min: number;
 
   public readonly max: number;
@@ -38,7 +38,11 @@ export default class FloatField<Value extends number = number> implements Field<
   }
 
   public deserialize(value: unknown): Value {
-    return this.validateNumber(ensureNumber(parseNumber(value)));
+    const number = parseNumber(value);
+    if (number == null) {
+      throw new ValidationException('invalidNumeric', 'Invalid numeric value');
+    }
+    return this.validateNumber(ensureNumber(number));
   }
 
   public encode(value: Value): string {
@@ -46,7 +50,7 @@ export default class FloatField<Value extends number = number> implements Field<
   }
 
   public decode(value: string): Value {
-    return this.validateNumber(ensureNumber(parseNumber(value)));
+    return this.deserialize(value);
   }
 
   protected validateNumber(value: number): Value {
@@ -54,7 +58,7 @@ export default class FloatField<Value extends number = number> implements Field<
       throw new ValidationException('invalidNumber', 'Invalid number value');
     }
     if (!Number.isFinite(value)) {
-      throw new ValidationException('invalidNumber', 'Number value cannot be infinite');
+      throw new ValidationException('invalidInfinite', 'Number value cannot be infinite');
     }
     const { min, max } = this;
     if (value < min) {

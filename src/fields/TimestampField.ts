@@ -1,7 +1,7 @@
 import deserializeDateTime from '../datetime/deserializeDateTime';
 import ValidationException from '../errors/ValidationException';
 import type Field from './Field';
-import NumberField from './FloatField';
+import NumberField from './NumberField';
 
 export default class TimestampField implements Field<Date, number> {
   public readonly type: string = 'timestamptz';
