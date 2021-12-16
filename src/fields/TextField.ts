@@ -9,20 +9,24 @@ function ensureString(value: unknown): string {
 }
 
 interface TextFieldOptions {
+  trim?: boolean;
   minLength?: number;
-  maxLength?: number;
+  maxLength?: number | null;
 }
 
 export default class TextField<I extends string = string> implements Field<I> {
   public readonly type: string = 'text';
 
+  public readonly trim: boolean;
+
   public readonly minLength: number;
 
-  public readonly maxLength: number;
+  public readonly maxLength: number | null;
 
   constructor(options?: TextFieldOptions) {
     this.minLength = options?.minLength ?? 0;
-    this.maxLength = options?.maxLength ?? Infinity;
+    this.maxLength = options?.maxLength ?? null;
+    this.trim = options?.trim ?? false;
   }
 
   public validate(value: string): I {
@@ -49,19 +53,20 @@ export default class TextField<I extends string = string> implements Field<I> {
   }
 
   protected validateString(value: string): I {
-    const { minLength, maxLength } = this;
-    if (value.length < minLength) {
+    const { minLength, maxLength, trim } = this;
+    const str = trim ? (value.trim() as I) : (value as I);
+    if (str.length < minLength) {
       throw new ValidationException(
         'tooShort',
         minLength === 1 ? 'String cannot be blank' : `String cannot be shorter than ${minLength} characters`,
       );
     }
-    if (value.length > maxLength) {
+    if (maxLength != null && str.length > maxLength) {
       throw new ValidationException(
         'tooLong',
         `String cannot be longer than ${maxLength} ${maxLength === 1 ? 'character' : 'characters'}`,
       );
     }
-    return value as I;
+    return str;
   }
 }

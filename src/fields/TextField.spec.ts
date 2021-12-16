@@ -37,6 +37,24 @@ describe('TextField', () => {
       const validationError = new ValidationException('tooShort', 'String cannot be blank');
       throws(() => field.validate(''), validationError);
     });
+    it('trims leading and trailing whitespace', () => {
+      const field = new TextField({ trim: true });
+      strictEqual(field.validate(' Hello, world! '), 'Hello, world!');
+      strictEqual(field.validate('   Hello, world!   '), 'Hello, world!');
+      strictEqual(field.validate('\nHello, world!\n'), 'Hello, world!');
+      strictEqual(field.validate('\n\nHello, world!\n\n'), 'Hello, world!');
+      strictEqual(field.validate('\tHello, world!\t'), 'Hello, world!');
+      strictEqual(field.validate('\t\tHello, world!\t\t'), 'Hello, world!');
+    });
+    it('trims leading and trailing whitespace before validating the length', () => {
+      const field = new TextField({ maxLength: 5, trim: true });
+      strictEqual(field.validate('   12345   '), '12345');
+    });
+    it('throws on string that becomes too short after trimming', () => {
+      const field = new TextField({ minLength: 3, trim: true });
+      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      throws(() => field.validate('   12   '), validationError);
+    });
     it('throws on non-string values', () => {
       const field = new TextField();
       const validationError = new ValidationException('invalidString', 'Invalid string value');
@@ -80,6 +98,24 @@ describe('TextField', () => {
       const field = new TextField({ minLength: 1 });
       const validationError = new ValidationException('tooShort', 'String cannot be blank');
       throws(() => field.serialize(''), validationError);
+    });
+    it('trims leading and trailing whitespace', () => {
+      const field = new TextField({ trim: true });
+      strictEqual(field.serialize(' Hello, world! '), 'Hello, world!');
+      strictEqual(field.serialize('   Hello, world!   '), 'Hello, world!');
+      strictEqual(field.serialize('\nHello, world!\n'), 'Hello, world!');
+      strictEqual(field.serialize('\n\nHello, world!\n\n'), 'Hello, world!');
+      strictEqual(field.serialize('\tHello, world!\t'), 'Hello, world!');
+      strictEqual(field.serialize('\t\tHello, world!\t\t'), 'Hello, world!');
+    });
+    it('trims leading and trailing whitespace before validating the length', () => {
+      const field = new TextField({ maxLength: 5, trim: true });
+      strictEqual(field.serialize('   12345   '), '12345');
+    });
+    it('throws on string that becomes too short after trimming', () => {
+      const field = new TextField({ minLength: 3, trim: true });
+      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      throws(() => field.serialize('   12   '), validationError);
     });
     it('throws on non-string values', () => {
       const field = new TextField();
@@ -131,6 +167,24 @@ describe('TextField', () => {
       const validationError = new ValidationException('tooShort', 'String cannot be blank');
       throws(() => field.deserialize(''), validationError);
     });
+    it('trims leading and trailing whitespace', () => {
+      const field = new TextField({ trim: true });
+      strictEqual(field.deserialize(' Hello, world! '), 'Hello, world!');
+      strictEqual(field.deserialize('   Hello, world!   '), 'Hello, world!');
+      strictEqual(field.deserialize('\nHello, world!\n'), 'Hello, world!');
+      strictEqual(field.deserialize('\n\nHello, world!\n\n'), 'Hello, world!');
+      strictEqual(field.deserialize('\tHello, world!\t'), 'Hello, world!');
+      strictEqual(field.deserialize('\t\tHello, world!\t\t'), 'Hello, world!');
+    });
+    it('trims leading and trailing whitespace before validating the length', () => {
+      const field = new TextField({ maxLength: 5, trim: true });
+      strictEqual(field.deserialize('   12345   '), '12345');
+    });
+    it('throws on string that becomes too short after trimming', () => {
+      const field = new TextField({ minLength: 3, trim: true });
+      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      throws(() => field.deserialize('   12   '), validationError);
+    });
     it('throws on invalid number values', () => {
       const field = new TextField();
       const validationError = new ValidationException('invalidString', 'Invalid string value');
@@ -181,6 +235,24 @@ describe('TextField', () => {
       const validationError = new ValidationException('tooShort', 'String cannot be blank');
       throws(() => field.encode(''), validationError);
     });
+    it('trims leading and trailing whitespace', () => {
+      const field = new TextField({ trim: true });
+      strictEqual(field.encode(' Hello, world! '), 'Hello, world!');
+      strictEqual(field.encode('   Hello, world!   '), 'Hello, world!');
+      strictEqual(field.encode('\nHello, world!\n'), 'Hello, world!');
+      strictEqual(field.encode('\n\nHello, world!\n\n'), 'Hello, world!');
+      strictEqual(field.encode('\tHello, world!\t'), 'Hello, world!');
+      strictEqual(field.encode('\t\tHello, world!\t\t'), 'Hello, world!');
+    });
+    it('trims leading and trailing whitespace before validating the length', () => {
+      const field = new TextField({ maxLength: 5, trim: true });
+      strictEqual(field.encode('   12345   '), '12345');
+    });
+    it('throws on string that becomes too short after trimming', () => {
+      const field = new TextField({ minLength: 3, trim: true });
+      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      throws(() => field.encode('   12   '), validationError);
+    });
     it('throws on non-string values', () => {
       const field = new TextField();
       const validationError = new ValidationException('invalidString', 'Invalid string value');
@@ -224,6 +296,24 @@ describe('TextField', () => {
       const field = new TextField({ minLength: 1 });
       const validationError = new ValidationException('tooShort', 'String cannot be blank');
       throws(() => field.decode(''), validationError);
+    });
+    it('trims leading and trailing whitespace', () => {
+      const field = new TextField({ trim: true });
+      strictEqual(field.decode(' Hello, world! '), 'Hello, world!');
+      strictEqual(field.decode('   Hello, world!   '), 'Hello, world!');
+      strictEqual(field.decode('\nHello, world!\n'), 'Hello, world!');
+      strictEqual(field.decode('\n\nHello, world!\n\n'), 'Hello, world!');
+      strictEqual(field.decode('\tHello, world!\t'), 'Hello, world!');
+      strictEqual(field.decode('\t\tHello, world!\t\t'), 'Hello, world!');
+    });
+    it('trims leading and trailing whitespace before validating the length', () => {
+      const field = new TextField({ maxLength: 5, trim: true });
+      strictEqual(field.decode('   12345   '), '12345');
+    });
+    it('throws on string that becomes too short after trimming', () => {
+      const field = new TextField({ minLength: 3, trim: true });
+      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      throws(() => field.decode('   12   '), validationError);
     });
   });
 });
