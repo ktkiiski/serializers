@@ -1,4 +1,4 @@
-import type Encoding from '../serializers/Encoding';
+import type Encoding from '../serializers/Encoding.js';
 
 export default function decodeObject(encoding: string): Encoding {
   const result: Encoding = {};

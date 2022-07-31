@@ -1,4 +1,4 @@
-import type KeyValidationError from './KeyValidationError';
+import type KeyValidationError from './KeyValidationError.js';
 
 type IndexValidationError = KeyValidationError<number>;
 

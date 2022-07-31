@@ -1,16 +1,16 @@
 import { hasOwnProperty, keys } from 'immuton';
-import type PropertyValidationError from '../errors/PropertyValidationError';
-import ValidationException from '../errors/ValidationException';
-import isValidationError from '../errors/isValidationError';
-import serializeValidationError from '../errors/serializeValidationError';
-import type Field from '../fields/Field';
-import decodeObject from '../utils/decodeObject';
-import encodeObject from '../utils/encodeObject';
-import type Encoding from './Encoding';
-import type FieldConverter from './FieldConverter';
-import type Fields from './Fields';
-import type Serialization from './Serialization';
-import type Serializer from './Serializer';
+import type PropertyValidationError from '../errors/PropertyValidationError.js';
+import ValidationException from '../errors/ValidationException.js';
+import isValidationError from '../errors/isValidationError.js';
+import serializeValidationError from '../errors/serializeValidationError.js';
+import type Field from '../fields/Field.js';
+import decodeObject from '../utils/decodeObject.js';
+import encodeObject from '../utils/encodeObject.js';
+import type Encoding from './Encoding.js';
+import type FieldConverter from './FieldConverter.js';
+import type Fields from './Fields.js';
+import type Serialization from './Serialization.js';
+import type Serializer from './Serializer.js';
 
 abstract class BaseSerializer<T> implements Serializer<T> {
   readonly type: string = 'jsonb';

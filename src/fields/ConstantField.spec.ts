@@ -1,7 +1,7 @@
 import { deepEqual, throws } from 'assert';
 import { describe, it } from 'mocha';
-import ValidationException from '../errors/ValidationException';
-import ConstantField from './ConstantField';
+import ValidationException from '../errors/ValidationException.js';
+import ConstantField from './ConstantField.js';
 
 describe('ConstantField', () => {
   const field = new ConstantField([111, 222, 333, -444]);

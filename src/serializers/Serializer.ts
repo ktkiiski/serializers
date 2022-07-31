@@ -1,6 +1,6 @@
-import type Field from '../fields/Field';
-import type Encoding from './Encoding';
-import type Serialization from './Serialization';
+import type Field from '../fields/Field.js';
+import type Encoding from './Encoding.js';
+import type Serialization from './Serialization.js';
 
 export default interface Serializer<Data> extends Field<Data, Serialization> {
   validate(input: Data): Data;

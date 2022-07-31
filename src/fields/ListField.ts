@@ -1,9 +1,9 @@
 import { empty, isEmpty } from 'immuton';
-import type IndexValidationError from '../errors/IndexValidationError';
-import ValidationException from '../errors/ValidationException';
-import isValidationError from '../errors/isValidationError';
-import serializeValidationError from '../errors/serializeValidationError';
-import type Field from './Field';
+import type IndexValidationError from '../errors/IndexValidationError.js';
+import ValidationException from '../errors/ValidationException.js';
+import isValidationError from '../errors/isValidationError.js';
+import serializeValidationError from '../errors/serializeValidationError.js';
+import type Field from './Field.js';
 
 export default class ListField<I, O> implements Field<I[], O[]> {
   public readonly type: string;

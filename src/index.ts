@@ -1,8 +1,8 @@
-import FieldSerializer from './serializers/FieldSerializer';
-import type Fields from './serializers/Fields';
-import type ValueOf from './utils/ValueOf';
+import FieldSerializer from './serializers/FieldSerializer.js';
+import type Fields from './serializers/Fields.js';
+import type ValueOf from './utils/ValueOf.js';
 
-export * as fields from './fields';
+export * as fields from './fields.js';
 
 export { ValueOf };
 

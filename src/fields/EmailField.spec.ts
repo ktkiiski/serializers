@@ -1,7 +1,7 @@
 import { deepEqual, throws } from 'assert';
 import { describe, it } from 'mocha';
-import ValidationException from '../errors/ValidationException';
-import EmailField from './EmailField';
+import ValidationException from '../errors/ValidationException.js';
+import EmailField from './EmailField.js';
 
 describe('EmailField', () => {
   const field = new EmailField();

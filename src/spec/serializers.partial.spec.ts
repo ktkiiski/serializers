@@ -1,7 +1,7 @@
 import { deepEqual, throws } from 'assert';
-import type ValidationError from '../errors/ValidationError';
-import * as fields from '../fields';
-import FieldSerializer from '../serializers/FieldSerializer';
+import type ValidationError from '../errors/ValidationError.js';
+import * as fields from '../fields.js';
+import FieldSerializer from '../serializers/FieldSerializer.js';
 
 describe('partial serializer', () => {
   describe('allows omitting optional properties', () => {

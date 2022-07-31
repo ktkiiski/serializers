@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
-import ValidationException from '../errors/ValidationException';
-import type Field from './Field';
-import NumberField from './NumberField';
+import ValidationException from '../errors/ValidationException.js';
+import type Field from './Field.js';
+import NumberField from './NumberField.js';
 
 const MAX_INTEGER = Number.MAX_SAFE_INTEGER;
 const MIN_INTEGER = Number.MIN_SAFE_INTEGER;

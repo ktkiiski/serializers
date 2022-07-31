@@ -1,6 +1,6 @@
 import { propertyless } from 'immuton';
-import ValidationException from '../errors/ValidationException';
-import IntegerField from './IntegerField';
+import ValidationException from '../errors/ValidationException.js';
+import IntegerField from './IntegerField.js';
 
 export default class ConstantField<Option extends number> extends IntegerField<Option> {
   constructor(private options: Option[]) {

@@ -1,7 +1,7 @@
 import { deepEqual, throws } from 'assert';
 import { describe, it } from 'mocha';
-import ValidationException from '../errors/ValidationException';
-import DecimalField from './DecimalField';
+import ValidationException from '../errors/ValidationException.js';
+import DecimalField from './DecimalField.js';
 
 describe('DecimalField', () => {
   describe('constructor', () => {

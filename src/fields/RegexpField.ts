@@ -1,5 +1,5 @@
-import ValidationException from '../errors/ValidationException';
-import TextField from './TextField';
+import ValidationException from '../errors/ValidationException.js';
+import TextField from './TextField.js';
 
 export default class RegexpField extends TextField {
   constructor(

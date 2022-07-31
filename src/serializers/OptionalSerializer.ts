@@ -1,9 +1,9 @@
 import { keys, Require } from 'immuton';
-import type Field from '../fields/Field';
-import BaseSerializer from './BaseSerializer';
-import type { ExtendableSerializer } from './ExtendableSerializer';
-import type FieldConverter from './FieldConverter';
-import type Fields from './Fields';
+import type Field from '../fields/Field.js';
+import BaseSerializer from './BaseSerializer.js';
+import type { ExtendableSerializer } from './ExtendableSerializer.js';
+import type FieldConverter from './FieldConverter.js';
+import type Fields from './Fields.js';
 
 export default class OptionalSerializer<Data, Required extends keyof Data>
   extends BaseSerializer<Require<Data, Required>>

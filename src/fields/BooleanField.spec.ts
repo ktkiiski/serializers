@@ -1,7 +1,7 @@
 import { deepEqual, throws } from 'assert';
 import { describe, it } from 'mocha';
-import ValidationException from '../errors/ValidationException';
-import BooleanField from './BooleanField';
+import ValidationException from '../errors/ValidationException.js';
+import BooleanField from './BooleanField.js';
 
 describe('BooleanField', () => {
   const field = new BooleanField();

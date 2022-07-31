@@ -1,5 +1,5 @@
-import type IndexValidationError from './IndexValidationError';
-import type PropertyValidationError from './PropertyValidationError';
+import type IndexValidationError from './IndexValidationError.js';
+import type PropertyValidationError from './PropertyValidationError.js';
 
 type KeyValidationErrorList = PropertyValidationError[] | IndexValidationError[];
 

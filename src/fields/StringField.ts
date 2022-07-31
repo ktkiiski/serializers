@@ -1,5 +1,5 @@
-import ValidationException from '../errors/ValidationException';
-import TrimmedTextField from './TrimmedTextField';
+import ValidationException from '../errors/ValidationException.js';
+import TrimmedTextField from './TrimmedTextField.js';
 
 export default class StringField extends TrimmedTextField {
   public validateString(value: string): string {

@@ -1,7 +1,7 @@
 import { deepEqual, throws } from 'assert';
 import { describe, it } from 'mocha';
-import ValidationException from '../errors/ValidationException';
-import DateTimeField from './DateTimeField';
+import ValidationException from '../errors/ValidationException.js';
+import DateTimeField from './DateTimeField.js';
 
 describe('DateTimeField', () => {
   const field = new DateTimeField();

@@ -1,8 +1,8 @@
 import { difference, empty, Key, keys, omit, Optional, pick, Require } from 'immuton';
-import BaseSerializer from './BaseSerializer';
-import type { ExtendableSerializer } from './ExtendableSerializer';
-import type Fields from './Fields';
-import OptionalSerializer from './OptionalSerializer';
+import BaseSerializer from './BaseSerializer.js';
+import type { ExtendableSerializer } from './ExtendableSerializer.js';
+import type Fields from './Fields.js';
+import OptionalSerializer from './OptionalSerializer.js';
 
 export default class FieldSerializer<T> extends BaseSerializer<T> implements ExtendableSerializer<T> {
   constructor(public readonly fields: Fields<T>) {

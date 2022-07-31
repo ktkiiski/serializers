@@ -1,5 +1,5 @@
 import { keys } from 'immuton';
-import type Encoding from '../serializers/Encoding';
+import type Encoding from '../serializers/Encoding.js';
 
 export default function encodeObject(obj: Encoding): string {
   return keys(obj)

@@ -1,4 +1,4 @@
-import RegexpField from './RegexpField';
+import RegexpField from './RegexpField.js';
 
 /**
  * Field for email addresses. This just ensures that

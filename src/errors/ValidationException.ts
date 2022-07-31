@@ -1,5 +1,5 @@
-import type KeyValidationErrorList from './KeyValidationErrorList';
-import type ValidationError from './ValidationError';
+import type KeyValidationErrorList from './KeyValidationErrorList.js';
+import type ValidationError from './ValidationError.js';
 
 class ValidationException extends Error implements ValidationError {
   public name = 'ValidationException';

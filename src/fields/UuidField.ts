@@ -1,4 +1,4 @@
-import RegexpField from './RegexpField';
+import RegexpField from './RegexpField.js';
 
 export default class UUIDField extends RegexpField {
   public readonly type: string = 'uuid';

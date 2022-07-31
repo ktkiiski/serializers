@@ -1,7 +1,7 @@
 /* eslint-disable no-bitwise */
-import ValidationException from '../errors/ValidationException';
-import parseNumber from '../utils/parseNumber';
-import type Field from './Field';
+import ValidationException from '../errors/ValidationException.js';
+import parseNumber from '../utils/parseNumber.js';
+import type Field from './Field.js';
 
 export interface NumberFieldOptions {
   min?: number;

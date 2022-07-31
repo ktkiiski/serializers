@@ -1,5 +1,5 @@
-import ValidationException from '../errors/ValidationException';
-import type Field from './Field';
+import ValidationException from '../errors/ValidationException.js';
+import type Field from './Field.js';
 
 function ensureBoolean(value: unknown): boolean {
   if (typeof value === 'boolean') {

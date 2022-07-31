@@ -1,7 +1,7 @@
 import { deepEqual, throws } from 'assert';
 import { describe, it } from 'mocha';
-import ValidationException from '../errors/ValidationException';
-import ChoiceField from './ChoiceField';
+import ValidationException from '../errors/ValidationException.js';
+import ChoiceField from './ChoiceField.js';
 
 describe('ChoiceField', () => {
   const field = new ChoiceField(['one', 'two', 'three']);

@@ -1,4 +1,4 @@
-import ValidationException from '../errors/ValidationException';
+import ValidationException from '../errors/ValidationException.js';
 
 const dateRegexp = /^(\d{4})-(\d{2})-(\d{2})$/;
 

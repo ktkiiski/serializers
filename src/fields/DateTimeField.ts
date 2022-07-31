@@ -1,7 +1,7 @@
-import deserializeDateTime from '../datetime/deserializeDateTime';
-import serializeDateTime from '../datetime/serializeDateTime';
-import ValidationException from '../errors/ValidationException';
-import type Field from './Field';
+import deserializeDateTime from '../datetime/deserializeDateTime.js';
+import serializeDateTime from '../datetime/serializeDateTime.js';
+import ValidationException from '../errors/ValidationException.js';
+import type Field from './Field.js';
 
 function ensureDateTime(value: unknown): Date {
   if (value instanceof Date && !Number.isNaN(value.getTime())) {

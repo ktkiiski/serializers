@@ -1,4 +1,4 @@
-import type Field from './Field';
+import type Field from './Field.js';
 
 function isNullable(value: unknown): value is null | '' {
   return value === null || value === '';

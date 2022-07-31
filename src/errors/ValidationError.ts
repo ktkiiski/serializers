@@ -1,4 +1,4 @@
-import type KeyValidationErrorList from './KeyValidationErrorList';
+import type KeyValidationErrorList from './KeyValidationErrorList.js';
 
 export default interface ValidationError {
   code: string;

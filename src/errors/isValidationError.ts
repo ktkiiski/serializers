@@ -1,5 +1,5 @@
 import { hasOwnProperty } from 'immuton';
-import type ValidationError from './ValidationError';
+import type ValidationError from './ValidationError.js';
 
 const keyTypes = ['string', 'number'];
 

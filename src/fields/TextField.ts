@@ -1,5 +1,5 @@
-import ValidationException from '../errors/ValidationException';
-import type Field from './Field';
+import ValidationException from '../errors/ValidationException.js';
+import type Field from './Field.js';
 
 function ensureString(value: unknown): string {
   if (typeof value === 'string') {

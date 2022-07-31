@@ -1,4 +1,4 @@
-import ValidationException from '../errors/ValidationException';
+import ValidationException from '../errors/ValidationException.js';
 
 const isoRegexp = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:[+-]\d\d:\d\d|Z)$/;
 

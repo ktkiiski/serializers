@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
-import * as fields from '../fields';
-import FieldSerializer from '../serializers/FieldSerializer';
+import * as fields from '../fields.js';
+import FieldSerializer from '../serializers/FieldSerializer.js';
 
 describe('serializer', () => {
   const serializer = new FieldSerializer({

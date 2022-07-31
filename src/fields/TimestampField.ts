@@ -1,7 +1,7 @@
-import deserializeDateTime from '../datetime/deserializeDateTime';
-import ValidationException from '../errors/ValidationException';
-import type Field from './Field';
-import NumberField from './NumberField';
+import deserializeDateTime from '../datetime/deserializeDateTime.js';
+import ValidationException from '../errors/ValidationException.js';
+import type Field from './Field.js';
+import NumberField from './NumberField.js';
 
 export default class TimestampField implements Field<Date, number> {
   public readonly type: string = 'timestamptz';

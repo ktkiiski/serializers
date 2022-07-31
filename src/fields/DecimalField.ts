@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
-import ValidationException from '../errors/ValidationException';
-import RegexpField from './RegexpField';
+import ValidationException from '../errors/ValidationException.js';
+import RegexpField from './RegexpField.js';
 
 const decimalRegexp = /^\s*[+-]?\d+(?:\.\d+)?\s*$/;
 const MIN_DECIMALS = -20;

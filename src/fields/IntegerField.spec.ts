@@ -1,7 +1,7 @@
 import { strictEqual, throws } from 'assert';
 import { describe, it } from 'mocha';
-import ValidationException from '../errors/ValidationException';
-import IntegerField from './IntegerField';
+import ValidationException from '../errors/ValidationException.js';
+import IntegerField from './IntegerField.js';
 
 describe('IntegerField', () => {
   describe('validate()', () => {
