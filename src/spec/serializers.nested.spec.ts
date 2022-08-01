@@ -67,7 +67,7 @@ describe('nested serializer', () => {
       message: `Invalid fields`,
       errors: [
         {
-          code: 'blank',
+          code: 'tooShort',
           message: `Value may not be blank`,
           key: 'name',
           errors: [],
@@ -78,7 +78,7 @@ describe('nested serializer', () => {
           key: 'tags',
           errors: [
             {
-              code: 'blank',
+              code: 'tooShort',
               message: `Value may not be blank`,
               key: 0,
               errors: [],
@@ -91,7 +91,7 @@ describe('nested serializer', () => {
           key: 'nested',
           errors: [
             {
-              code: 'blank',
+              code: 'tooShort',
               message: `Value may not be blank`,
               key: 'id',
               errors: [],

@@ -19,22 +19,22 @@ describe('TextField', () => {
     });
     it('throws on string with length greater than allowed value', () => {
       const field = new TextField({ maxLength: 10 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 10 characters');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 10 characters');
       throws(() => field.validate('1234567890!'), validationError);
     });
     it('throws on string with length greater than allowed value 1', () => {
       const field = new TextField({ maxLength: 1 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 1 character');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 1 character');
       throws(() => field.validate('12'), validationError);
     });
     it('throws on string with length less than allowed value', () => {
       const field = new TextField({ minLength: 3 });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.validate('aa'), validationError);
     });
     it('throws on blank string with length less than allowed value 1', () => {
       const field = new TextField({ minLength: 1 });
-      const validationError = new ValidationException('tooShort', 'String cannot be blank');
+      const validationError = new ValidationException('tooShort', 'Value may not be blank');
       throws(() => field.validate(''), validationError);
     });
     it('trims leading and trailing whitespace', () => {
@@ -52,7 +52,7 @@ describe('TextField', () => {
     });
     it('throws on string that becomes too short after trimming', () => {
       const field = new TextField({ minLength: 3, trim: true });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.validate('   12   '), validationError);
     });
     it('throws on non-string values', () => {
@@ -81,22 +81,22 @@ describe('TextField', () => {
     });
     it('throws on string with length greater than allowed value', () => {
       const field = new TextField({ maxLength: 10 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 10 characters');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 10 characters');
       throws(() => field.serialize('1234567890!'), validationError);
     });
     it('throws on string with length greater than allowed value 1', () => {
       const field = new TextField({ maxLength: 1 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 1 character');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 1 character');
       throws(() => field.serialize('12'), validationError);
     });
     it('throws on string with length less than allowed value', () => {
       const field = new TextField({ minLength: 3 });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.serialize('aa'), validationError);
     });
     it('throws on blank string with length less than allowed value 1', () => {
       const field = new TextField({ minLength: 1 });
-      const validationError = new ValidationException('tooShort', 'String cannot be blank');
+      const validationError = new ValidationException('tooShort', 'Value may not be blank');
       throws(() => field.serialize(''), validationError);
     });
     it('trims leading and trailing whitespace', () => {
@@ -114,7 +114,7 @@ describe('TextField', () => {
     });
     it('throws on string that becomes too short after trimming', () => {
       const field = new TextField({ minLength: 3, trim: true });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.serialize('   12   '), validationError);
     });
     it('throws on non-string values', () => {
@@ -149,22 +149,22 @@ describe('TextField', () => {
     });
     it('throws on string with length greater than allowed value', () => {
       const field = new TextField({ maxLength: 10 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 10 characters');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 10 characters');
       throws(() => field.deserialize('1234567890!'), validationError);
     });
     it('throws on string with length greater than allowed value 1', () => {
       const field = new TextField({ maxLength: 1 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 1 character');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 1 character');
       throws(() => field.deserialize('12'), validationError);
     });
     it('throws on string with length less than allowed value', () => {
       const field = new TextField({ minLength: 3 });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.deserialize('aa'), validationError);
     });
     it('throws on blank string with length less than allowed value 1', () => {
       const field = new TextField({ minLength: 1 });
-      const validationError = new ValidationException('tooShort', 'String cannot be blank');
+      const validationError = new ValidationException('tooShort', 'Value may not be blank');
       throws(() => field.deserialize(''), validationError);
     });
     it('trims leading and trailing whitespace', () => {
@@ -182,7 +182,7 @@ describe('TextField', () => {
     });
     it('throws on string that becomes too short after trimming', () => {
       const field = new TextField({ minLength: 3, trim: true });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.deserialize('   12   '), validationError);
     });
     it('throws on invalid number values', () => {
@@ -217,22 +217,22 @@ describe('TextField', () => {
     });
     it('throws on string with length greater than allowed value', () => {
       const field = new TextField({ maxLength: 10 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 10 characters');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 10 characters');
       throws(() => field.encode('1234567890!'), validationError);
     });
     it('throws on string with length greater than allowed value 1', () => {
       const field = new TextField({ maxLength: 1 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 1 character');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 1 character');
       throws(() => field.encode('12'), validationError);
     });
     it('throws on string with length less than allowed value', () => {
       const field = new TextField({ minLength: 3 });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.encode('aa'), validationError);
     });
     it('throws on blank string with length less than allowed value 1', () => {
       const field = new TextField({ minLength: 1 });
-      const validationError = new ValidationException('tooShort', 'String cannot be blank');
+      const validationError = new ValidationException('tooShort', 'Value may not be blank');
       throws(() => field.encode(''), validationError);
     });
     it('trims leading and trailing whitespace', () => {
@@ -250,7 +250,7 @@ describe('TextField', () => {
     });
     it('throws on string that becomes too short after trimming', () => {
       const field = new TextField({ minLength: 3, trim: true });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.encode('   12   '), validationError);
     });
     it('throws on non-string values', () => {
@@ -279,22 +279,22 @@ describe('TextField', () => {
     });
     it('throws on string with length greater than allowed value', () => {
       const field = new TextField({ maxLength: 10 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 10 characters');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 10 characters');
       throws(() => field.decode('1234567890!'), validationError);
     });
     it('throws on string with length greater than allowed value 1', () => {
       const field = new TextField({ maxLength: 1 });
-      const validationError = new ValidationException('tooLong', 'String cannot be longer than 1 character');
+      const validationError = new ValidationException('tooLong', 'Value may not be longer than 1 character');
       throws(() => field.decode('12'), validationError);
     });
     it('throws on string with length less than allowed value', () => {
       const field = new TextField({ minLength: 3 });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.decode('aa'), validationError);
     });
     it('throws on blank string with length less than allowed value 1', () => {
       const field = new TextField({ minLength: 1 });
-      const validationError = new ValidationException('tooShort', 'String cannot be blank');
+      const validationError = new ValidationException('tooShort', 'Value may not be blank');
       throws(() => field.decode(''), validationError);
     });
     it('trims leading and trailing whitespace', () => {
@@ -312,7 +312,7 @@ describe('TextField', () => {
     });
     it('throws on string that becomes too short after trimming', () => {
       const field = new TextField({ minLength: 3, trim: true });
-      const validationError = new ValidationException('tooShort', 'String cannot be shorter than 3 characters');
+      const validationError = new ValidationException('tooShort', 'Value may not be shorter than 3 characters');
       throws(() => field.decode('   12   '), validationError);
     });
   });

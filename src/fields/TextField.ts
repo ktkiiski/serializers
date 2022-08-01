@@ -58,13 +58,13 @@ export default class TextField<I extends string = string> implements Field<I> {
     if (str.length < minLength) {
       throw new ValidationException(
         'tooShort',
-        minLength === 1 ? 'String cannot be blank' : `String cannot be shorter than ${minLength} characters`,
+        minLength === 1 ? 'Value may not be blank' : `Value may not be shorter than ${minLength} characters`,
       );
     }
     if (maxLength != null && str.length > maxLength) {
       throw new ValidationException(
         'tooLong',
-        `String cannot be longer than ${maxLength} ${maxLength === 1 ? 'character' : 'characters'}`,
+        `Value may not be longer than ${maxLength} ${maxLength === 1 ? 'character' : 'characters'}`,
       );
     }
     return str;

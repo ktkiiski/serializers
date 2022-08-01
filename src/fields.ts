@@ -13,15 +13,13 @@ import NullableField from './fields/NullableField.js';
 import NumberField from './fields/NumberField.js';
 import type { NumberFieldOptions } from './fields/NumberField.js';
 import RegexpField from './fields/RegexpField.js';
-import StringField from './fields/StringField.js';
 import TextField from './fields/TextField.js';
 import TimestampField from './fields/TimestampField.js';
-import TrimmedTextField from './fields/TrimmedTextField.js';
 import URLField from './fields/URLField.js';
 import UUIDField from './fields/UUIDField.js';
 
-const stringField = new StringField();
-const trimmedTextField = new TrimmedTextField();
+const stringField = new TextField({ trim: true, minLength: 1 });
+const trimmedTextField = new TextField({ trim: true });
 const textField = new TextField();
 const integerField = new IntegerField();
 const numberField = new NumberField();
