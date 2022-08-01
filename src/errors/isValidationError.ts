@@ -1,9 +1,10 @@
 import { hasOwnProperty } from 'immuton';
+import type KeyValidationError from './KeyValidationError.js';
 import type ValidationError from './ValidationError.js';
 
 const keyTypes = ['string', 'number'];
 
-function isKeyValidationError(error: unknown): error is ValidationError {
+function isKeyValidationError(error: unknown): error is KeyValidationError<number | string> {
   return isValidationError(error) && hasOwnProperty(error, 'key') && keyTypes.includes(typeof error.key);
 }
 
