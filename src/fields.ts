@@ -13,14 +13,11 @@ import NullableField from './fields/NullableField.js';
 import NumberField from './fields/NumberField.js';
 import type { NumberFieldOptions } from './fields/NumberField.js';
 import RegexpField from './fields/RegexpField.js';
-import TextField from './fields/TextField.js';
+import StringField, { StringFieldOptions } from './fields/StringField.js';
 import TimestampField from './fields/TimestampField.js';
 import URLField from './fields/URLField.js';
 import UUIDField from './fields/UUIDField.js';
 
-const stringField = new TextField({ trim: true, minLength: 1 });
-const trimmedTextField = new TextField({ trim: true });
-const textField = new TextField();
 const integerField = new IntegerField();
 const numberField = new NumberField();
 const booleanField = new BooleanField();
@@ -33,16 +30,24 @@ const uuid1Field = new UUIDField(1);
 const uuid4Field = new UUIDField(4);
 const uuid5Field = new UUIDField(5);
 
-export function string(): Field<string> {
-  return stringField;
-}
-
-export function trimmed(): Field<string> {
-  return trimmedTextField;
-}
-
-export function text(): Field<string> {
-  return textField;
+export function string(minLength: number, maxLength: number | null, trim: boolean): Field<string>;
+export function string(options: StringFieldOptions): Field<string>;
+export function string(...args: (number | boolean | null | StringFieldOptions)[]): Field<string> {
+  const options: StringFieldOptions = {};
+  args.forEach((arg) => {
+    if (typeof arg === 'number') {
+      if (options.minLength == null) {
+        options.minLength = arg;
+      } else {
+        options.maxLength = arg;
+      }
+    } else if (typeof arg === 'boolean') {
+      options.trim = arg;
+    } else if (arg != null) {
+      Object.assign(options, arg);
+    }
+  });
+  return new StringField(options);
 }
 
 export function choice<K extends string>(options: K[]): Field<K> {

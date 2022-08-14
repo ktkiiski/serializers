@@ -8,13 +8,13 @@ function ensureString(value: unknown): string {
   throw new ValidationException('invalidString', `Invalid string value`);
 }
 
-interface TextFieldOptions {
+export interface StringFieldOptions {
   trim?: boolean;
   minLength?: number;
   maxLength?: number | null;
 }
 
-export default class TextField<I extends string = string> implements Field<I> {
+export default class StringField<I extends string = string> implements Field<I> {
   public readonly type: string = 'text';
 
   public readonly trim: boolean;
@@ -23,7 +23,7 @@ export default class TextField<I extends string = string> implements Field<I> {
 
   public readonly maxLength: number | null;
 
-  constructor(options?: TextFieldOptions) {
+  constructor(options?: StringFieldOptions) {
     this.minLength = options?.minLength ?? 0;
     this.maxLength = options?.maxLength ?? null;
     this.trim = options?.trim ?? false;

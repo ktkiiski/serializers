@@ -4,11 +4,11 @@ import FieldSerializer from '../serializers/FieldSerializer.js';
 
 describe('serializer', () => {
   const serializer = new FieldSerializer({
-    'name': fields.string(),
+    'name': fields.string(1, 100, true),
     'age': fields.number(),
     'nested object': new FieldSerializer({
-      foo: fields.string(),
-      bar: fields.string(),
+      foo: fields.string(0, 100, true),
+      bar: fields.string(0, 100, true),
     }),
   });
   it('can encode objects', () => {

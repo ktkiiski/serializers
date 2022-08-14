@@ -1,7 +1,7 @@
 import ValidationException from '../errors/ValidationException.js';
-import TextField from './TextField.js';
+import StringField from './StringField.js';
 
-export default class RegexpField extends TextField {
+export default class RegexpField extends StringField {
   constructor(
     private readonly regexp: RegExp,
     private readonly errorCode = 'patternMismatch',

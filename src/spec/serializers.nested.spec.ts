@@ -7,10 +7,10 @@ import type Serializer from '../serializers/Serializer.js';
 describe('nested serializer', () => {
   describe('can be used as a field', () => {
     const serializer = new FieldSerializer({
-      name: fields.string(),
+      name: fields.string(1, 100, true),
       nestedObject: new FieldSerializer({
-        foo: fields.string(),
-        bar: fields.string(),
+        foo: fields.string(1, 100, true),
+        bar: fields.string(1, 100, true),
       }),
     });
     const input = {
@@ -43,11 +43,11 @@ describe('nested serializer', () => {
     }
 
     const serializer: Serializer<TestInput> = new FieldSerializer({
-      name: fields.string(),
+      name: fields.string(1, 100, true),
       index: fields.number(),
-      tags: fields.list(fields.string()),
+      tags: fields.list(fields.string(1, 100, true)),
       nested: new FieldSerializer({
-        id: fields.string(),
+        id: fields.string(1, 100, true),
         foo: fields.number({ min: 0 }),
         bar: fields.number({ max: 10 }),
       }),

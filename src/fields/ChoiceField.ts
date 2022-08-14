@@ -1,8 +1,8 @@
 import ValidationException from '../errors/ValidationException.js';
 import type Field from './Field.js';
-import TextField from './TextField.js';
+import StringField from './StringField.js';
 
-export default class ChoiceField<Option extends string> extends TextField<Option> implements Field<Option> {
+export default class ChoiceField<Option extends string> extends StringField<Option> implements Field<Option> {
   constructor(private options: Option[]) {
     super();
   }

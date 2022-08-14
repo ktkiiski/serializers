@@ -6,9 +6,9 @@ import FieldSerializer from '../serializers/FieldSerializer.js';
 describe('partial serializer', () => {
   describe('allows omitting optional properties', () => {
     const serializer = new FieldSerializer({
-      requiredProp1: fields.string(),
+      requiredProp1: fields.string(1, 100, true),
       requiredProp2: fields.number(),
-      optionalProp1: fields.string(),
+      optionalProp1: fields.string(1, 100, true),
       optionalProp2: fields.number(),
     }).require(['requiredProp1', 'requiredProp2']);
     const input = {
@@ -27,9 +27,9 @@ describe('partial serializer', () => {
   });
   describe('preserves optional properties', () => {
     const serializer = new FieldSerializer({
-      requiredProp1: fields.string(),
+      requiredProp1: fields.string(1, 100, true),
       requiredProp2: fields.number(),
-      optionalProp1: fields.string(),
+      optionalProp1: fields.string(1, 100, true),
       optionalProp2: fields.number(),
     }).require(['requiredProp1', 'requiredProp2']);
     const input = {
@@ -50,9 +50,9 @@ describe('partial serializer', () => {
   });
   describe('disallow omitting required properties', () => {
     const serializer = new FieldSerializer({
-      requiredProp1: fields.string(),
+      requiredProp1: fields.string(1, 100, true),
       requiredProp2: fields.number(),
-      optionalProp1: fields.string(),
+      optionalProp1: fields.string(1, 100, true),
       optionalProp2: fields.number(),
     }).require(['requiredProp1', 'requiredProp2']);
     const input: any = {

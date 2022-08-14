@@ -4,7 +4,7 @@ import ValidationException from '../errors/ValidationException.js';
 import DateTimeField from './DateTimeField.js';
 import NullableField from './NullableField.js';
 import NumberField from './NumberField.js';
-import TextField from './TextField.js';
+import StringField from './StringField.js';
 
 describe('NullableField', () => {
   describe('validate()', () => {
@@ -14,17 +14,17 @@ describe('NullableField', () => {
       strictEqual(field.validate(123), 123);
     });
     it('allows null value with text field', () => {
-      const field = new NullableField(new TextField());
+      const field = new NullableField(new StringField());
       strictEqual(field.validate(null), null);
       strictEqual(field.validate('foobar'), 'foobar');
       strictEqual(field.validate(''), '');
     });
     it('validates invalid blank string as null with non-empty text field', () => {
-      const field = new NullableField(new TextField({ minLength: 1 }));
+      const field = new NullableField(new StringField({ minLength: 1 }));
       strictEqual(field.validate(''), null);
     });
     it('throws on string value not accepted by the base text field', () => {
-      const field = new NullableField(new TextField({ minLength: 2 }));
+      const field = new NullableField(new StringField({ minLength: 2 }));
       throws(
         () => field.validate('x'),
         new ValidationException('tooShort', 'Value may not be shorter than 2 characters'),
@@ -46,17 +46,17 @@ describe('NullableField', () => {
       strictEqual(field.serialize(123), 123);
     });
     it('serializes null value with text field', () => {
-      const field = new NullableField(new TextField());
+      const field = new NullableField(new StringField());
       strictEqual(field.serialize(null), null);
       strictEqual(field.serialize('foobar'), 'foobar');
       strictEqual(field.serialize(''), '');
     });
     it('serializes invalid blank string as null with non-empty text field', () => {
-      const field = new NullableField(new TextField({ minLength: 1 }));
+      const field = new NullableField(new StringField({ minLength: 1 }));
       strictEqual(field.serialize(''), null);
     });
     it('throws on string value not accepted by the base text field', () => {
-      const field = new NullableField(new TextField({ minLength: 2 }));
+      const field = new NullableField(new StringField({ minLength: 2 }));
       throws(
         () => field.serialize('x'),
         new ValidationException('tooShort', 'Value may not be shorter than 2 characters'),
@@ -78,17 +78,17 @@ describe('NullableField', () => {
       strictEqual(field.deserialize(123), 123);
     });
     it('deserializes null value with text field', () => {
-      const field = new NullableField(new TextField());
+      const field = new NullableField(new StringField());
       strictEqual(field.deserialize(null), null);
       strictEqual(field.deserialize('foobar'), 'foobar');
       strictEqual(field.deserialize(''), '');
     });
     it('deserializes invalid blank string as null with non-empty text field', () => {
-      const field = new NullableField(new TextField({ minLength: 1 }));
+      const field = new NullableField(new StringField({ minLength: 1 }));
       strictEqual(field.deserialize(''), null);
     });
     it('throws on string value not accepted by the base text field', () => {
-      const field = new NullableField(new TextField({ minLength: 2 }));
+      const field = new NullableField(new StringField({ minLength: 2 }));
       throws(
         () => field.deserialize('x'),
         new ValidationException('tooShort', 'Value may not be shorter than 2 characters'),
@@ -115,16 +115,16 @@ describe('NullableField', () => {
       strictEqual(field.encode(123), '123');
     });
     it('encodes null value as blank string with text field', () => {
-      const field = new NullableField(new TextField());
+      const field = new NullableField(new StringField());
       strictEqual(field.encode(null), '');
       strictEqual(field.encode(''), '');
     });
     it('encodes invalid blank string with non-empty text field', () => {
-      const field = new NullableField(new TextField({ minLength: 1 }));
+      const field = new NullableField(new StringField({ minLength: 1 }));
       strictEqual(field.encode(''), '');
     });
     it('throws on string value not accepted by the base text field', () => {
-      const field = new NullableField(new TextField({ minLength: 2 }));
+      const field = new NullableField(new StringField({ minLength: 2 }));
       throws(
         () => field.encode('x'),
         new ValidationException('tooShort', 'Value may not be shorter than 2 characters'),
@@ -146,16 +146,16 @@ describe('NullableField', () => {
       strictEqual(field.decode('123'), 123);
     });
     it('decodes blank string as null value with text field', () => {
-      const field = new NullableField(new TextField());
+      const field = new NullableField(new StringField());
       strictEqual(field.decode(''), null);
       strictEqual(field.decode('x'), 'x');
     });
     it('decodes invalid blank string as null with non-empty text field', () => {
-      const field = new NullableField(new TextField({ minLength: 1 }));
+      const field = new NullableField(new StringField({ minLength: 1 }));
       strictEqual(field.decode(''), null);
     });
     it('throws on string value not accepted by the base text field', () => {
-      const field = new NullableField(new TextField({ minLength: 2 }));
+      const field = new NullableField(new StringField({ minLength: 2 }));
       throws(
         () => field.decode('x'),
         new ValidationException('tooShort', 'Value may not be shorter than 2 characters'),
