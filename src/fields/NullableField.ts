@@ -1,15 +1,8 @@
+import isValidationError from '../errors/isValidationError.js';
 import type Field from './Field.js';
-
-function isNullable(value: unknown): value is null | '' {
-  return value === null || value === '';
-}
 
 /**
  * Makes the given field nullable, allowing null values for it.
- * It also means that any blank value, e.g. an empty string, will
- * always be converted to null.
- *
- * Useful to be used with string(), datetime() and integer() fields.
  */
 export default class NullableField<I, O> implements Field<I | null, O | null> {
   public readonly type: string;
@@ -19,22 +12,39 @@ export default class NullableField<I, O> implements Field<I | null, O | null> {
   }
 
   public validate(value: I | null): I | null {
-    return (!isNullable(value) && this.field.validate(value)) || null;
+    return nullify(value, this.field, 'validate');
   }
 
   public serialize(value: I | null): O | null {
-    return (!isNullable(value) && this.field.serialize(value)) || null;
+    return nullify(value, this.field, 'serialize');
   }
 
   public deserialize(value: unknown): I | null {
-    return value === null || value === '' ? null : this.field.deserialize(value);
+    return nullify(value, this.field, 'deserialize');
   }
 
   public encode(value: I | null): string {
-    return (!isNullable(value) && this.field.encode(value)) || '';
+    return nullify(value, this.field, 'encode') ?? '';
   }
 
   public decode(value: string): I | null {
-    return (!isNullable(value) && this.field.decode(value)) || null;
+    return !value ? null : this.field.decode(value);
+  }
+}
+
+function nullify(value: unknown, obj: any, method: string): any {
+  if (value == null) {
+    return null;
+  }
+  if ((value as unknown) !== '') {
+    return obj[method](value);
+  }
+  try {
+    return obj[method](value);
+  } catch (error) {
+    if (isValidationError(error) && error.code === 'tooShort') {
+      return null;
+    }
+    throw error;
   }
 }
