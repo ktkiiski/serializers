@@ -1,6 +1,6 @@
 import { difference, empty, Key, keys, omit, Optional, pick, Require } from 'immuton';
 import BaseSerializer from './BaseSerializer.js';
-import type { ExtendableSerializer } from './ExtendableSerializer.js';
+import type ExtendableSerializer from './ExtendableSerializer.js';
 import type Fields from './Fields.js';
 import OptionalSerializer from './OptionalSerializer.js';
 

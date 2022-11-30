@@ -23,7 +23,8 @@
   "prettier": "eslint-config-broilerplate/prettier.config",
   "exports": {
     ".": "./lib/index.js",
-    "./fields": "./lib/fields.js"
+    "./fields": "./lib/fields.js",
+    "./fields/*": "./lib/fields/*"
   },
   "engines": {
     "node": ">=14.16"

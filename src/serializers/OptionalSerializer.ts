@@ -1,7 +1,7 @@
 import { keys, Require } from 'immuton';
 import type Field from '../fields/Field.js';
 import BaseSerializer from './BaseSerializer.js';
-import type { ExtendableSerializer } from './ExtendableSerializer.js';
+import type ExtendableSerializer from './ExtendableSerializer.js';
 import type FieldConverter from './FieldConverter.js';
 import type Fields from './Fields.js';
 

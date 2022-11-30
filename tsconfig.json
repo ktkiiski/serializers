@@ -2,6 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "NodeNext",
     "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
     "exactOptionalPropertyTypes": true,
     "target": "ESNext",
     "declaration": true,
