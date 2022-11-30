@@ -8,6 +8,7 @@
     "clean": "rm -rf ./lib",
     "prebuild": "npm run clean",
     "build": "tsc --project tsconfig.lib.json",
+    "prepare": "npm run build",
     "lint": "eslint . --ext .ts,.tsx && prettier --check .",
     "lint:fix": "eslint . --ext .ts,.tsx --fix && prettier --write ."
   },
