@@ -16,6 +16,11 @@
     "test": "./src/spec",
     "src": "./src"
   },
+  "files": [
+    "lib",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ktkiiski/serializers.git"
