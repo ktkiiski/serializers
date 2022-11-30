@@ -27,6 +27,9 @@
     "url": "git+https://github.com/ktkiiski/serializers.git"
   },
   "prettier": "eslint-config-broilerplate/prettier.config",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "exports": {
     ".": "./lib/index.js",
     "./fields": "./lib/fields.js",
